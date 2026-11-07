@@ -89,9 +89,26 @@ A healthy run reports PASS for Prometheus health, at least three active Promethe
 - The **Kali Host & Containers — Overview** dashboard appears automatically and begins displaying host and container panels.
 - `bash verify.sh` finishes with three PASS results and no failures.
 
-## Verified run
+## Verified run — 7 November 2026
 
-_Pending — this section will be completed with the real local run results, target status, dashboard screenshots, and verification output after the stack has been executed end to end._
+The full stack was executed end to end on a local Kali Linux VM:
+
+- All four containers came up together with a single `docker-compose up -d` (Prometheus :9090, node-exporter :9100, cAdvisor :8080, Grafana :3000).
+- Prometheus target health showed every scrape target **UP** — Prometheus itself, node-exporter, and cAdvisor.
+- `bash verify.sh` finished with **Passed: 3, Failed: 0** (Prometheus healthy, 3 active targets up, Grafana healthy).
+- The provisioned **Kali Host & Containers — Overview** dashboard rendered live host data in Grafana (CPU, memory, root disk, network, uptime, container CPU) with the Prometheus data source connected.
+
+**Prometheus targets — all UP:**
+
+![Prometheus targets](docs/01-prometheus-targets.png)
+
+**Grafana dashboard — live host metrics:**
+
+![Grafana dashboard](docs/02-grafana-dashboard.png)
+
+**Verification script — 3 passed, 0 failed:**
+
+![verify.sh output](docs/03-verify-pass.png)
 
 ## Cleanup
 
